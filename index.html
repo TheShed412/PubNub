@@ -1,0 +1,30 @@
+<!doctype html>
+  <head>
+    <script language="javascript" type="text/javascript" src="http://cdn.pubnub.com/pubnub-3.7.1.min.js"></script>
+    <script language="javascript" type="text/javascript" >
+
+
+    var channel = "disco";
+    var button = document.getElementById('butt');
+
+     var pub = PUBNUB.init({
+       subscribe_key: 'sub-c-73e6721a-304c-11e6-8bc8-0619f8945a4f',
+      publish_key: 'pub-c-3ef60582-c7a1-498f-8aed-5a34d2265af5'
+     });
+
+    function disco(){
+       pub.publish({
+         channel: channel,
+         message: {led: 1}
+       });
+    }
+
+    if(button){
+      button.addEventListener("click", disco);
+    }
+
+
+    </script>
+  </head>
+  <button id="butt" onclick="disco()">Disco on!</button>
+</html>
