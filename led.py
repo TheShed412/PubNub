@@ -4,22 +4,28 @@ import time
 
 
 LIGHT = 21
+LED = [17, 18, 27, 22, 23, 24, 25, 4]
 
 def setup():
-    GPIO.setmode (GPIO.BCM)
-    GPIO.setup(LIGHT,GPIO.OUT)
     GPIO.cleanup()
     GPIO.setmode (GPIO.BCM)
     GPIO.setup(LIGHT,GPIO.OUT)
+    for i in LED:
+        GPIO.setup(i, GPIO.OUT)
 
 def callback(m, channel):
-    print(m['mess'])
-    if m['led']==1:
-        for i in range(6):
-             GPIO.output(LIGHT,True)
-             time.sleep(0.5)
-             GPIO.output(LIGHT,False)
-             time.sleep(0.5)
+    print(m)
+    # if m['led']==1:
+    #     for i in range(6):
+    #          GPIO.output(LIGHT,True)
+    #          time.sleep(0.5)
+    #          GPIO.output(LIGHT,False)
+    #          time.sleep(0.5)
+    if m['state']==1:
+        GPIO.output(LED[m['led']], True)
+    else:
+        GPIO.output(LED[m['led']], False)
+
 def error(m):
     GPIO.cleanup()
     print(m)

@@ -34,9 +34,19 @@ function change_pin(pic){
     if(lightClr==="red"){
       pic.src="data/img/green/green_"+lightNum+".jpg";
       pic.alt="green";
+
+      pub.publish({
+        channel: channel,
+        message: {"led": lightNum, "state": 1}
+      });
     }else{
       pic.src="data/img/red/red_"+lightNum+".jpg";
       pic.alt="red"
+
+      pub.publish({
+        channel: channel,
+        message: {"led": lightNum, "state": 0}
+      });
     }
 }
 
