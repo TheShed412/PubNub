@@ -20,13 +20,6 @@ var leds = [button_0, button_1, button_2, button_3, button_4, button_5, button_6
   publish_key: 'pub-c-3ef60582-c7a1-498f-8aed-5a34d2265af5'
  });
 
-function disco(){
-   sendStr = document.getElementById('mess').value;
-   pub.publish({
-     channel: channel,
-     message: {"led": 1, "mess": sendStr}
-   });
-}
 
 function change_pin(pic){
     var lightNum = parseInt(pic.id.charAt(7));
@@ -54,8 +47,4 @@ for(var i=0; i<leds.length; i++){
   leds[i].addEventListener("click", function(){
     change_pin(this);
   });
-}
-
-if(button){
-  button.addEventListener("click", disco);
 }
